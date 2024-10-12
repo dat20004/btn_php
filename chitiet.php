@@ -82,7 +82,7 @@
                 <h1 class="all-courses__title">Tất cả các khoá học</h1>
                 <div class="all-courses__list">
                     <div class="all-courses__item">
-                        <img src="./images/allcourses1.jfif" alt="">
+                        <a href="course_content.php"><img src="./images/allcourses1.jfif" alt=""></a>
                         <h2>Công nghệ thông tin</h2>
                         <p>Dr. John Doe</p>
                         <span class="all-courses__price">1.299.000đ</span>

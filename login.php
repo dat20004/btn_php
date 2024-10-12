@@ -1,3 +1,59 @@
+<?php 
+ob_start();
+session_start();
+include 'connect.php';
+
+if(isset($_POST['email'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Kiểm tra thông tin đăng nhập
+    $stmt = $conn->prepare("SELECT id, name, email, role, password FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $query = $stmt->get_result();
+
+    if ($query && $query->num_rows == 1) {
+        $user = $query->fetch_object();
+        
+        // Kiểm tra mật khẩu
+        if (password_verify($password, $user->password)) {
+            // Lưu thông tin người dùng vào session
+            $_SESSION['user_login'] = $user;
+
+            // Chuyển hướng dựa trên vai trò
+            switch ($user->role) {
+                case 'Admin':
+                    header('Location: admin/index.php');
+                    exit();
+                case 'Teacher':
+                    header('Location: teacher/index.php');
+                    exit();
+                case 'Student':
+                    header('Location: index.php');
+                    exit();
+                default:
+                    // Nếu không có vai trò hợp lệ, có thể thông báo lỗi hoặc chuyển hướng về trang chủ
+                    header('Location: login.php');
+                    exit();
+            }
+        } else {
+            // Thông báo mật khẩu không chính xác
+            $errors['failed'] = 'Mật khẩu không chính xác';
+        }
+    } else {
+        // Thông báo tài khoản không tồn tại
+        $errors['failed'] = 'Tài khoản không tồn tại';
+    }
+
+    $stmt->close();
+}
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,10 +79,16 @@
                 <h1>Đăng nhập tài khoản tại FastLearn</h1>
 
                 <form action="" method="POST" role="form">
+                    <label for="role">Role:</label>
+                    <select name="role">
+                        <option value="Admin">Quản trị viên</option>
+                        <option value="Teacher">Giảng viên</option>
+                        <option value="Student">Sinh viên</option>
+                    </select>
                     <div class="form-group">
 
                         <div>
-                            <input type="text" id="" placeholder="Nhập số điện thoại">
+                            <input type="text" id="" placeholder="Nhập email">
                         </div>
                         <div>
                             <input type="password" id="" placeholder="Mật khẩu">

@@ -8,7 +8,7 @@
             </h1>
             <div class="all-courses__list">
                 <div class="all-courses-item">
-                    <a>
+                    <a href="chitiet.php" style="text-decoration: none;">
                         <img src="./images/allcourses3.jpeg" alt="" />
                         <h2>
                             Khoa học công nghệ <i class="fas fa-laptop-code"></i>

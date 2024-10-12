@@ -1,12 +1,12 @@
 <?php 
-ob_start();
-session_start();
-include'../connect.php';
-if(empty($_SESSION['admin_login'])){
-    header('location: login.php');
-}
+// ob_start();
+// session_start();
+// include'../connect.php';
+// if(empty($_SESSION['admin_login'])){
+//     header('location: login.php');
+// }
 
-$admin = $_SESSION['admin_login'];
+// $admin = $_SESSION['admin_login'];
 
 ?>
 
@@ -54,9 +54,8 @@ $admin = $_SESSION['admin_login'];
             </div>
             <div class="header-icon">
                 <ul>
-                    <li><i class="fa-solid fa-comments"></i></li>
-                    <li><i class="fa-regular fa-envelope"></i></li>
                     <li><i class="fa-regular fa-bell"></i></li>
+                    <li><i class="fa-regular fa-envelope"></i></li>
                 </ul>
             </div>
 
@@ -77,6 +76,7 @@ $admin = $_SESSION['admin_login'];
                         <ul class="treeview-menu">
                             <li><a href="subject.php"><i class="fa fa-circle-o"></i>Khóa học</a></li>
                             <li><a href="teacher.php"><i class="fa fa-circle-o"></i>Giảng viên</a></li>
+                            <li><a href="feedback.php"><i class="fa fa-circle-o"></i>Đánh giá</a></li>
                         </ul>
                     </li>
                     <li class="treeview">

@@ -1,14 +1,16 @@
 <?php
 session_start();
-include '../connect.php';
+include '../connect.php'; // Đảm bảo rằng tệp kết nối sử dụng PDO
 $errors = [];
+
 if(isset($_POST['email'])){
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+    // Kiểm tra các trường đầu vào
     if($email == ''){
         $errors['email'] = 'Email không được để trống';
-    }else if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+    }else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
         $errors['email'] = 'Email không đúng định dạng';
     }
 
@@ -16,46 +18,30 @@ if(isset($_POST['email'])){
         $errors['password'] = 'Mật khẩu không được để trống';
     }
 
-
+    // Nếu không có lỗi
     if(!$errors) {
         // Chuẩn bị câu lệnh SQL
         $stmt = $conn->prepare("SELECT id, name, email, role FROM users WHERE email = ? AND password = ?");
-    
-        // Kiểm tra xem câu lệnh prepare có thành công không
-        if ($stmt === false) {
-            // In ra lỗi nếu prepare thất bại
-            die('Lỗi chuẩn bị truy vấn SQL: ' . $conn->error);
-        }
-    
-        // Nếu prepare thành công, tiếp tục với bind_param
-        $stmt->bind_param("ss", $email, $password);  // "ss" cho biết cả email và password đều là chuỗi
-        $stmt->execute();
-        $query = $stmt->get_result();  // Lấy kết quả sau khi thực thi truy vấn
-    
-        if ($query && $query->num_rows == 1) {
-            $admin = $query->fetch_object();
+        
+        // Thực thi câu lệnh SQL với các tham số
+        $stmt->execute([$email, $password]);
+
+        // Kiểm tra kết quả
+        if ($stmt->rowCount() == 1) {
+            $admin = $stmt->fetch(PDO::FETCH_OBJ);
             if ($admin->role != 'Admin') {
                 $errors['failed'] = 'Tài khoản của bạn không có quyền đăng nhập vào trang quản trị';
             } else {
                 $_SESSION['admin_login'] = $admin;
                 header('location: index.php');
-                exit();  // Dừng script sau khi chuyển hướng
+                exit(); // Dừng script sau khi chuyển hướng
             }
         } else {
             $errors['failed'] = 'Tài khoản hoặc mật khẩu không chính xác';
         }
-    
-        $stmt->close();  // Đóng statement
     }
-    
-
-
-    
 }
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html>
@@ -83,18 +69,18 @@ if(isset($_POST['email'])){
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
                 <?php foreach($errors as $error) :?>
-                <li><?php echo $error; ?></li>
+                <li><?php echo htmlspecialchars($error); ?></li>
                 <?php endforeach; ?>
             </div>
             <?php endif; ?>
 
             <form action="" method="post">
                 <div class="form-group has-feedback">
-                    <input type="email" class="form-control" placeholder="Email" name="email">
+                    <input type="email" class="form-control" placeholder="Email" name="email" required>
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Password" name="password">
+                    <input type="password" class="form-control" placeholder="Password" name="password" required>
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="row">

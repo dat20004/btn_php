@@ -299,6 +299,86 @@ function deletePost(button) {
         responseMessage.style.display = "block";
     }
 }
+document.addEventListener('DOMContentLoaded', function() {
+    const addCourseBtn = document.getElementById('addCourseBtn');
+    const courseForm = document.getElementById('courseForm');
+    const cancelBtn = document.getElementById('cancelBtn');
+
+    // Hiển thị form khi nhấn vào nút "Thêm mới khóa học"
+    addCourseBtn.addEventListener('click', function() {
+        courseForm.style.display = 'block';
+    });
+
+    // Ẩn form khi nhấn vào nút "Hủy"
+    cancelBtn.addEventListener('click', function() {
+        courseForm.style.display = 'none';
+    });
+});
+// Hiển thị form trả lời phản hồi
+function replyFeedback(button) {
+    // Lấy tên sinh viên từ hàng tương ứng
+    var row = button.parentElement.parentElement;
+    var studentName = row.cells[0].textContent;
+
+    // Hiển thị form và điền thông tin tên sinh viên
+    document.getElementById('studentName').value = studentName;
+    document.getElementById('replyForm').style.display = 'block';
+}
+
+// Đóng form trả lời phản hồi
+function closeReplyForm() {
+    document.getElementById('replyForm').style.display = 'none';
+}
+
+// Gửi phản hồi
+function sendReply() {
+    var studentName = document.getElementById('studentName').value;
+    var replyMessage = document.getElementById('replyMessage').value;
+    var replyImage = document.getElementById('replyImage').files[0];
+
+    if (replyMessage.trim() === '') {
+        alert("Vui lòng nhập nội dung trả lời.");
+        return;
+    }
+
+    // Giả sử gửi thành công, hiển thị thông báo
+    var responseMessage = document.getElementById('responseMessage');
+    responseMessage.innerHTML = "Bạn đã gửi trả lời cho " + studentName + "!";
+    responseMessage.style.display = 'block';
+
+    // Ẩn form trả lời và xóa nội dung
+    closeReplyForm();
+    document.getElementById('replyMessage').value = '';
+    document.getElementById('replyImage').value = '';
+}
+
+// Xóa phản hồi
+function deleteFeedback(button) {
+    if (confirm("Bạn có chắc chắn muốn xóa phản hồi này không?")) {
+        var row = button.parentElement.parentElement;
+        row.remove();
+    }
+}
+var modal = document.getElementById("createAccountModal");
+var btnOpen = document.getElementById("btnOpenModal");
+var btnClose = document.getElementsByClassName("close")[0];
+
+// Khi người dùng nhấn vào nút "Tạo tài khoản", modal sẽ hiển thị
+btnOpen.onclick = function() {
+    modal.style.display = "block";
+}
+
+// Khi người dùng nhấn vào nút đóng (x), modal sẽ ẩn
+btnClose.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Khi người dùng nhấn bên ngoài modal, modal cũng sẽ ẩn
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 </script>
 </body>
 

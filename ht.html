@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/533aad8d01.js" crossorigin="anonymous"></script>
+    <style>
+        /* Ẩn các chuyên ngành ban đầu */
+        .sub-menu {
+            display: none;
+            position: absolute;
+            background-color: white; /* Màu nền */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Bóng đổ */
+            z-index: 1000; /* Đảm bảo nó nằm trên các phần tử khác */
+        }
+
+        .dropdown-teacher {
+            position: relative; /* Để các submenu nằm bên cạnh */
+        }
+
+        .dropdown-item {
+            cursor: pointer; /* Con trỏ khi hover */
+        }
+
+        .show {
+            display: block; /* Hiện chuyên ngành */
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><img class="header-img" src="./images/12-removebg-preview.png"
+                        alt=""></a>
+
+                <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarNavDropdown">
+                    <ul class="navbar-nav ">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Về chúng tôi
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="hello-fastlearn.php">Về Fastlearn </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="introduction.php">Đội ngũ giảng viên</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="feel-student.php">Học viên</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Dropdown Ngành học -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="majorDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Ngành học
+                            </a>
+                            <ul class="dropdown-menu dropdown-teacher" aria-labelledby="majorDropdown">
+                                <li>
+                                    <a class="dropdown-item" id="scienceTechnology">Khoa học công nghệ</a>
+                                    <div class="sub-menu">
+                                        <a class="dropdown-item" href="#">Công nghệ thông tin</a>
+                                        <a class="dropdown-item" href="#">Khoa học dữ liệu</a>
+                                        <a class="dropdown-item" href="#">An toàn thông tin</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Kinh tế</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Ngoại ngữ</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <!-- Tìm kiếm -->
+                    <form class="d-flex header-form" role="search">
+                        <input class="form-control " type="search" placeholder="Tìm kiếm" aria-label="Search">
+                        <button class="btn btn-outline-light" type="submit"><i
+                                class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
+
+                    <div class="header-button__register">
+                        <button class="btn btn-register">Đăng ký </button>
+                        <button class="btn btn-primary btn-login">Đăng nhập</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <script>
+        // JavaScript để điều khiển việc hiển thị chuyên ngành
+        document.getElementById('scienceTechnology').addEventListener('click', function (e) {
+            e.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
+            var subMenu = this.nextElementSibling; // Lấy phần tử <div> chứa chuyên ngành
+            // Hiện hoặc ẩn các chuyên ngành
+            subMenu.classList.toggle('show');
+        });
+    </script>
+</body>
+
+</html>

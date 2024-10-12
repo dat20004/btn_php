@@ -124,13 +124,27 @@
 }
 .teacher-content__section form .form-group {
     display: flex;
-    margin: 5px 0;
+    margin: 10px 0;
+    align-items: center;
 }
 .teacher-content__section form .form-group label {
-    width: 10%;
+    width: 20%;
 }
 .teacher-content__section form .form-group input {
     border: none;
     outline: none;
-    padding: 5px;
+    padding: 8px 20px;
+    border-radius: 20px;
+}
+.info-main {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 50px 30px;
+}
+.info-main img {
+    width: 30%;
+}
+.info-main form {
+    width: 50%;
 }

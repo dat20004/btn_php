@@ -2,7 +2,7 @@
 <section class="achievement">
     <div class="inner-wrap">
         <div class="container">
-            <div class="achievement-top">
+            <!-- <div class="achievement-top">
                 <h1 class="achievement-top__title">Bạn nhận được khi học ở FastLearn</h1>
                 <div class="achievement-top__img">
                     <img src="./images/hoc-tap.jpg" alt="">
@@ -11,7 +11,7 @@
                     <div class="achievement-top__desc achievement-top__desc-3">Thời gian học tập linh hoạt</div>
                     <div class="achievement-top__desc achievement-top__desc-4">Phương pháp học tiên tiến</div>
                 </div>
-            </div>
+            </div> -->
             <div class="achievement-bottom">
                 <h1 class="achievement-bottom__title">Các học viên xuất sắc</h1>
                 <div class="achievement-bottom__info">

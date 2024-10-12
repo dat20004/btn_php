@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <button class="btn btn-secondary" onclick="showSubContent('student-exchange')">
-                                    Trao đổi Học Viên
+                                    Sinh Viên
                                 </button>
                             </div>
                             <div class="col-md-3">
@@ -43,7 +43,7 @@
                             </div>
                             <div class="col-md-3">
                                 <button class="btn btn-secondary" onclick="showSubContent('students')">
-                                    Sinh Viên
+                                    Trao đổi Học Viên
                                 </button>
                             </div>
                             <div class="col-md-3">
@@ -136,7 +136,7 @@
                         </div>
 
                         <div id="students" class="sub-content mt-4" style="display: none">
-                            <h3>Sinh Viên</h3>
+                            <h3>Học Viên</h3>
                             <p>Nội dung về sinh viên sẽ hiển thị ở đây.</p>
                         </div>
 
@@ -154,27 +154,29 @@
                     <!-- Thông tin cá nhân -->
                     <div id="info" class="content-section teacher-content__section" style="display: none">
                         <h2>Thông tin cá nhân</h2>
-                        <img src="https://via.placeholder.com/150" class="rounded-circle" alt="Avatar" />
+                        <div class="info-main">
+                            <img src="https://via.placeholder.com/150" class="rounded-circle" alt="Avatar" />
 
-                        <form action="" method="POST" role="form">
-                            <div class="form-group">
-                                <label for="">Tên: </label>
-                                <input type="text" id="" placeholder="Nguyễn Quốc Dũng">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Email: </label>
-                                <input type="email" id="" placeholder="dung211224@gmail.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Điện thoại: </label>
-                                <input type="text" id="" placeholder="0392392938">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Chức danh: </label>
-                                <input type="text" id="" placeholder="Tổ trưởng">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Chính sửa</button>
-                        </form>
+                            <form action="" method="POST" role="form">
+                                <div class="form-group">
+                                    <label for="">Tên: </label>
+                                    <input type="text" id="" placeholder="Nguyễn Quốc Dũng">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Email: </label>
+                                    <input type="email" id="" placeholder="dung211224@gmail.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Điện thoại: </label>
+                                    <input type="text" id="" placeholder="0392392938">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Chức danh: </label>
+                                    <input type="text" id="" placeholder="Tổ trưởng">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Chỉnh sửa</button>
+                            </form>
+                        </div>
                     </div>
 
                     <!-- Đổi mật khẩu -->

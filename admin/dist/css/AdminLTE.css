@@ -37,6 +37,9 @@ button {
     outline: none;
     border: none;
 }
+li {
+    list-style: none;
+}
 /* Layout */
 .wrapper {
     min-height: 100%;
@@ -703,6 +706,10 @@ a:focus {
 /*
  * Component: Control sidebar. By default, this is the right sidebar.
  */
+.sidebar-menu i,
+.sidebar-menu span {
+    font-size: 16px;
+}
 .control-sidebar-bg {
     position: fixed;
     z-index: 1000;
@@ -5326,7 +5333,7 @@ table.text-center th {
 .subject .form-control {
     border-radius: 5px;
     padding: 0 15px;
-    margin-left: 20px;
+    /* margin-left: 20px; */
     font-size: 15px;
 }
 .subject button {
@@ -5343,12 +5350,11 @@ table.text-center th {
     justify-content: space-between;
 }
 .subject-in4__img {
-    width: 60px;
-    height: 60px;
+    width: 160px;
 }
 .subject-in4__img img {
-    width: 60px;
-    height: 60px;
+    width: 100%;
+    height: fit-content;
     object-fit: cover;
 }
 .subject-in4__time p {
@@ -5518,7 +5524,7 @@ table.text-center th {
 .statistics-list {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin: 40px 0;
 }
 .statistics-item {
@@ -5673,4 +5679,305 @@ table.text-center th {
     margin-top: 20px;
     font-weight: bold;
     color: green;
+}
+.courseForm-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 40px 0; */
+}
+.courseForm {
+    width: 500px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.courseForm h1 {
+    text-align: center;
+    color: #4a4a4a;
+    margin-bottom: 20px;
+}
+
+.courseForm form {
+    display: flex;
+    flex-direction: column;
+}
+
+.courseForm form div {
+    margin-bottom: 15px;
+}
+
+.courseForm label {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #4a4a4a;
+}
+
+.courseForm input,
+.courseForm select,
+.courseForm textarea{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+    font-size: 15px;
+}
+
+.courseForm input:focus,
+.courseForm select:focus,
+.courseForm textarea:focus {
+    border-color: #88a5c9;
+    outline: none;
+}
+
+.course__Img {
+    text-align: center;
+}
+
+.upload-box {
+    font-size: 15px;
+    width: 150px;
+    height: 150px;
+    margin: 10px auto;
+    border: 2px dashed #ddd;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.upload-box:hover {
+    border-color: #bbb;
+    background-color: #f1f1f1;
+}
+
+.upload-box input[type="file"] {
+    display: none;
+}
+
+.courseForm button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.courseForm .btn-success {
+    background-color: #4caf50;
+    color: white;
+}
+
+.courseForm .btn-success:hover {
+    background-color: #45a049;
+}
+
+.courseForm .btn-secondary {
+    background-color: #a9a9a9;
+    color: white;
+}
+
+.courseForm .btn-secondary:hover {
+    background-color: #909090;
+}
+.courseForm form div:last-child {
+    display: flex;
+}
+.subject-in4__btn {
+    display: flex;
+}
+.subject-in4__btn a {
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: none;
+}
+/* ============================================= */
+.admin-container {
+    display: flex;
+}
+
+/* Sidebar */
+.admin-sidebar {
+    width: 20%;
+    background-color: #2c3e50;
+    padding: 20px;
+    color: white;
+}
+
+.admin-sidebar h2 {
+    text-align: center;
+}
+
+.admin-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.admin-sidebar ul li {
+    margin: 15px 0;
+}
+
+.admin-sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Main content */
+.admin-main-content {
+    width: 80%;
+    padding: 20px;
+}
+
+.admin-main-content h1 {
+    text-align: center;
+}
+
+.feedback-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.feedback-table th,
+.feedback-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.feedback-table th {
+    background-color: #3498db;
+    color: white;
+}
+
+.feedback-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Form trả lời phản hồi */
+#replyForm {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+#replyForm input,
+#replyForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#replyForm button {
+    background-color: #27ae60;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    width: 105px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#replyForm button:hover {
+    background-color: #229954;
+}
+
+#responseMessage {
+    margin-top: 20px;
+    font-weight: bold;
+    color: green;
+}
+.replyForm-btn {
+    display: flex;
+}
+.edit-courseForm {
+    width: 100% !important;
+}
+.edit-courseForm #courseName {
+    margin: 0 !important;
+}
+
+/* //////////////////// */
+.modal {
+    display: none; /* Ẩn modal mặc định */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    /* width: 100%; */
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0); /* Màu nền khi mở modal */
+    background-color: rgba(0, 0, 0, 0.4); /* Màu nền trong suốt */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Căn giữa modal */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40% !important;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+#createAccountForm {
+    font-size: 15px;
+}
+.modal .modal-content h3 {
+    text-align: center;
+}
+.edit-User__btn {
+    width: 100px !important;
+    background-color: #0fa0f2;
+    color: #fff;
+    padding: 0 !important   ;
+    margin: 0 !important;
+}
+.edit-User__btn-key {
+    background-color: red;
+    width: 150px !important;
+}
+.btn-key {
+    display: flex;
+    justify-content: space-between;
 }

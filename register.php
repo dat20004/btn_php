@@ -1,3 +1,32 @@
+<?php
+session_start();
+include 'connect.php';
+// Kết nối đến cơ sở dữ liệu
+$conn = new mysqli('localhost', 'root', '', 'btl');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['name'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $email = $_POST['email'];
+    $role = $_POST['role'];
+
+    // Chuẩn bị câu lệnh SQL
+    $sql = "INSERT INTO users (name, password, email, role) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssss", $username, $password, $email, $role);
+
+    if ($stmt->execute()) {
+        echo "Đăng ký thành công!";
+    } else {
+        echo "Lỗi: " . $conn->error;
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

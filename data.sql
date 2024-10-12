@@ -112,3 +112,58 @@ create table teacher (
 INSERT INTO admin(name,email,password,role) values 
 ('Admin Root','admin@gmail.com','123456','admin'),
 ('Trần Văn Nam','namvt@gmail.com','123456','number');
+
+
+
+CREATE TABLE materials (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    lesson_id INT NOT NULL,
+    filename VARCHAR(255) NOT NULL,
+    file_path VARCHAR(511) NOT NULL,
+    FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE course_materials (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    course_id INT NOT NULL,
+    name VARCHAR(255),
+    content TEXT,
+    link VARCHAR(511),
+    state ENUM ('Creating', 'Hidden', 'Visible') DEFAULT 'Creating',
+    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
+);
+
+CREATE TABLE materials (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    
+    lesson_id INT,  -- Có thể NULL nếu tài liệu chỉ thuộc khóa học chứ không thuộc bài học cụ thể
+    name VARCHAR(255) NOT NULL,
+    content TEXT,
+    link VARCHAR(511),
+    state ENUM ('Creating', 'Hidden', 'Visible') DEFAULT 'Creating',
+    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE,
+    FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE majors (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE courses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    fee DECIMAL(10, 2) DEFAULT 0,
+    major_id INT NOT NULL,
+    teacher_id INT NOT NULL,
+    start_date DATE,
+    end_date DATE,
+    FOREIGN KEY (major_id) REFERENCES majors(id) ON DELETE CASCADE,
+    FOREIGN KEY (teacher_id) REFERENCES users(id) ON DELETE CASCADE
+);

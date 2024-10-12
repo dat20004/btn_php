@@ -1134,7 +1134,7 @@ a {
 }
 .course {
     padding: 40px 0;
-    background-color: #5b9ff7;
+    background-color: #EBF0FC; 
 }
 .course .course-list {
     display: flex;
@@ -2440,7 +2440,7 @@ a {
 }
 .my-profile__row .nav-pills .nav-link.active {
     background-color: #cbddf0;
-    color: black;
+    color: rgb(255, 255, 255);
 }
 .my-profile__row .my-profile__right {
     width: 55%;
@@ -2760,3 +2760,6 @@ li {
 .chitietbaihoc .chapter h2:hover {
     color: #0842ac;
 }
+
+
+

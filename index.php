@@ -11,7 +11,7 @@ include 'header.php';
         <h1 class="slogan-title">FastLearn</h1>
         <h3 class="slogan-title__two">Nhanh chóng, Hiệu quả, Vươn xa</h3>
         <p class="slogan-desc">Tiệm cận với chi thức là cách để thành công</p>
-        <a class="btn btn-primary mt-5">Khám phá các khóa học </a>
+        <a class="btn btn-primary mt-5" href="all-courses.php" >Khám phá các khóa học </a>
         <img class="slogan-img__two" src="./images/anh2.png" alt="">
     </div>
 </section>

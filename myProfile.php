@@ -99,21 +99,21 @@
                                     <button class="nav-link active" id="pending-tab" data-bs-toggle="tab"
                                         data-bs-target="#pending" type="button" role="tab" aria-controls="pending"
                                         aria-selected="true">
-                                        Đơn hàng chờ thanh toán
+                                        Tất cả khóa học
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="completed-tab" data-bs-toggle="tab"
                                         data-bs-target="#completed" type="button" role="tab" aria-controls="completed"
                                         aria-selected="false">
-                                        Đơn hàng đã thanh toán
+                                        Chưa hoàn thành
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="cancelled-tab" data-bs-toggle="tab"
                                         data-bs-target="#cancelled" type="button" role="tab" aria-controls="cancelled"
                                         aria-selected="false">
-                                        Đơn hàng đã hủy
+                                        Đã hoàn thành
                                     </button>
                                 </li>
                             </ul>

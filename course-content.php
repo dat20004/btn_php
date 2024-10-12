@@ -40,9 +40,10 @@
                         <li><i class="fa-solid fa-check"></i>  Hỗ trợ điện thoại, máy tính bảng và desktop
                         </li>
                     </ul>
-                    <button class="btn-add btn btn-primary">Thêm vào giỏ hàng</button>
                     <div class="course-info__btn">
-                        <button class="btn-trial">Học thử</button>
+                    <button class="btn-add btn btn-primary">Thêm vào giỏ hàng</button>
+                    
+                        
                         <button class="btn-register">Đăng ký</button>
                     </div>
                 </div>
