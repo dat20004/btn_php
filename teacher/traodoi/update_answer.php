@@ -73,6 +73,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,27 +81,30 @@
     <!-- Thêm Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
 
-<div class="container mt-5">
-    <h1>Chỉnh Sửa Câu Trả Lời</h1>
+    <div class="container mt-5">
+        <h1>Chỉnh Sửa Câu Trả Lời</h1>
 
-    <!-- Form để cập nhật câu trả lời -->
-    <form method="POST" action="update_answer.php">
-        <input type="hidden" name="question_id" value="<?php echo htmlspecialchars($question_id); ?>">
+        <!-- Form để cập nhật câu trả lời -->
+        <form method="POST" action="update_answer.php">
+            <input type="hidden" name="question_id">
 
-        <div class="mb-3">
-            <label for="updated_answer" class="form-label">Câu Trả Lời</label>
-            <textarea class="form-control" name="updated_answer" rows="5"><?php echo htmlspecialchars($answer['answer']); ?></textarea>
-        </div>
+            <div class="mb-3">
+                <label for="updated_answer" class="form-label">Câu Trả Lời</label>
+                <textarea class="form-control" name="updated_answer" rows="5">
+            </textarea>
+            </div>
 
-        <button type="submit" class="btn btn-primary">Lưu</button>
-        <a href="view_questions.php" class="btn btn-secondary">Hủy</a>
-    </form>
-</div>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+            <a href="view_questions.php" class="btn btn-secondary">Hủy</a>
+        </form>
+    </div>
 
-<!-- Thêm Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Thêm Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>

@@ -57,15 +57,11 @@ if(isset($_POST['name'])){
         </div>
     </div>
     <section class="content-header d-flex justify-content-between ">
-        <select name="" id="input" required="required">
-            <option value="">Sắp xếp</option>
-            <option value="">1</option>
-            <option value="">1</option>
-            <option value="">1</option>
-        </select>
+
         <div class="teacher-input">
             <label for="">Tìm kiếm</label>
             <input type="text" name="" id="">
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </section>
     <hr>

@@ -63,7 +63,17 @@ document.getElementById("toggleNewPassword").addEventListener("click", function(
 
 document.getElementById("toggleCheckPassword").addEventListener("click", function() {
     togglePasswordVisibility("checkPassword", "toggleCheckPassword");
-});
+}); // JavaScript để hiển thị hoặc ẩn danh sách bài học khi nhấn vào chương
+function toggleLessons(chapterId) {
+    var lessonList = document.getElementById('lessons_' + chapterId);
+
+    // Kiểm tra trạng thái hiện tại và thay đổi display
+    if (lessonList.style.display === "none" || lessonList.style.display === "") {
+        lessonList.style.display = "block"; // Hiển thị danh sách bài học
+    } else {
+        lessonList.style.display = "none"; // Ẩn danh sách bài học khi nhấn lại
+    }
+}
 </script>
 </body>
 

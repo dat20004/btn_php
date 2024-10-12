@@ -5719,7 +5719,7 @@ table.text-center th {
 
 .courseForm input,
 .courseForm select,
-.courseForm textarea{
+.courseForm textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
@@ -5980,4 +5980,196 @@ table.text-center th {
 .btn-key {
     display: flex;
     justify-content: space-between;
+}
+.major-admin {
+    padding: 50px;
+}
+.major-admin__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.major-admin__header h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+.major-admin__header a {
+    height: 40px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+.major-admin__search {
+    width: 20%;
+    position: relative;
+    margin-top: 20px;
+}
+.major-admin__search input {
+    border: 0;
+    outline: 0;
+    padding: 8px 30px 8px 20px;
+    border-radius: 25px;
+    width: 100%;
+    font-size: 19px;
+}
+.major-admin__search i {
+    font-size: 15px;
+    position: absolute;
+    right: 1px;
+    bottom: 19px;
+    padding: 10px;
+}
+.major-admin__item {
+    display: flex; /* Sử dụng flexbox để dễ dàng căn chỉnh */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    padding: 15px; /* Padding cho mỗi item */
+    border: 1px solid #ddd; /* Đường viền cho mỗi item */
+    border-radius: 5px; /* Bo tròn góc cho item */
+    background-color: #f9f9f9; /* Màu nền cho item */
+    font-size: 12px;
+    margin-bottom: 15px; /* Khoảng cách giữa các item */
+}
+
+/* Hình ảnh trong mỗi item */
+.major-admin__img {
+    flex-shrink: 0; /* Ngăn không cho hình ảnh co lại */
+    width: 50px; /* Chiều rộng hình ảnh */
+    height: 50px; /* Chiều cao hình ảnh */
+    overflow: hidden; /* Ẩn phần hình ảnh vượt ra ngoài */
+    margin-right: 15px; /* Khoảng cách giữa hình ảnh và nội dung */
+}
+.major-admin__img {
+    object-fit: cover;
+}
+/* Tên ngành */
+.major-admin__name {
+    font-size: 1.2em; /* Kích thước chữ lớn hơn */
+    font-weight: bold; /* In đậm tên */
+    margin-right: 10px;
+}
+
+/* Mô tả ngành */
+.major-desc {
+    color: #555; /* Màu sắc cho mô tả */
+    margin-bottom: 10px; /* Khoảng cách dưới mô tả */
+}
+
+/* Container cho các nút */
+.major-admin__button {
+    margin-left: auto; /* Đẩy các nút về bên phải */
+}
+
+/* Nút Sửa */
+.major-admin__button .btn-primary {
+    background-color: #007bff; /* Màu nền cho nút Sửa */
+    color: #fff; /* Màu chữ cho nút Sửa */
+    padding: 8px 12px; /* Padding cho nút Sửa */
+    border: none; /* Không có đường viền */
+    border-radius: 4px; /* Bo tròn góc cho nút Sửa */
+    text-decoration: none; /* Không có gạch chân */
+    margin-right: 10px; /* Khoảng cách giữa nút Sửa và nút Xóa */
+}
+
+/* Nút Xóa */
+.major-admin__button .btn-danger {
+    background-color: #dc3545; /* Màu nền cho nút Xóa */
+    color: #fff; /* Màu chữ cho nút Xóa */
+    padding: 8px 12px; /* Padding cho nút Xóa */
+    border: none; /* Không có đường viền */
+    border-radius: 4px; /* Bo tròn góc cho nút Xóa */
+    text-decoration: none; /* Không có gạch chân */
+}
+
+/* Thay đổi màu khi hover */
+.major-admin__button .btn-primary:hover {
+    background-color: #0056b3; /* Màu nền khi hover trên nút Sửa */
+}
+
+.major-admin__button .btn-danger:hover {
+    background-color: #c82333; /* Màu nền khi hover trên nút Xóa */
+}
+
+.edit-major {
+    background-color: #ffffff; /* Nền trắng cho form */
+    padding: 20px;
+    border-radius: 10px; /* Bo tròn góc */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Đổ bóng */
+    width: 400px; /* Chiều rộng của form */
+}
+
+.edit-major h1 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px; /* Khoảng cách dưới tiêu đề */
+}
+
+.edit-major .form-group {
+    margin-bottom: 15px; /* Khoảng cách giữa các trường */
+}
+
+.edit-major .form-group label {
+    display: block; /* Để label nằm riêng biệt */
+    margin-bottom: 5px; /* Khoảng cách dưới label */
+}
+
+.edit-major .form-group input[type="text"],
+.edit-major .form-group textarea {
+    width: 100%; /* Chiều rộng 100% */
+    padding: 10px; /* Padding cho input */
+    border: 1px solid #ccc; /* Đường viền cho input */
+    border-radius: 5px; /* Bo tròn góc cho input */
+}
+
+.edit-major .file-input {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%; /* Chiều rộng 100% */
+}
+
+.edit-major .file-input input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0; /* Ẩn input file */
+    cursor: pointer; /* Hiệu ứng con trỏ */
+    height: 100%; /* Để chiếm toàn bộ chiều cao */
+    width: 100%; /* Để chiếm toàn bộ chiều rộng */
+}
+
+.edit-major .upload-button {
+    background-color: #e0e0e0; /* Màu nền cho nút tải ảnh */
+    border: none; /* Không có đường viền */
+    padding: 10px; /* Padding cho nút */
+    border-radius: 5px; /* Bo tròn góc */
+    text-align: center; /* Canh giữa chữ */
+    cursor: pointer; /* Hiệu ứng con trỏ khi hover */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển tiếp */
+    width: 100%; /* Chiều rộng 100% */
+}
+
+.edit-major .upload-button:hover {
+    background-color: #d0d0d0; /* Màu nền khi hover */
+}
+
+.edit-major .submit-button {
+    background-color: #007bff; /* Màu nền cho nút tạo */
+    color: white; /* Màu chữ cho nút tạo */
+    border: none; /* Không có đường viền */
+    padding: 10px; /* Padding cho nút */
+    border-radius: 5px; /* Bo tròn góc */
+    width: 100%; /* Chiều rộng 100% */
+    cursor: pointer; /* Hiệu ứng con trỏ khi hover */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển tiếp */
+}
+
+.edit-major .submit-button:hover {
+    background-color: #0056b3; /* Màu nền khi hover */
+}
+.edit-major__center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

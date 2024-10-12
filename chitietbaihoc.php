@@ -87,7 +87,11 @@
                     <button class="next">Bài kế tiếp</button>
                 </div>
             </section>
+
         </main>
+        <section style="height: 50px;">
+            <a href="hoidap.php" style="float: right; " class="btn btn-success">Hỏi đáp</a>
+        </section>
     </div>
 </section>
 

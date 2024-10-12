@@ -1,4 +1,25 @@
-<?php include 'header.php';  ?>
+<?php include 'header.php'; 
+
+// Kết nối với cơ sở dữ liệu
+require_once('./tailieu/db_connect.php');
+
+// Lấy danh sách chương và bài học
+// $sql = "SELECT chapters.id AS chapter_id, chapters.title AS chapter_title, 
+//         lessons.id AS lesson_id, lessons.title AS lesson_title
+//         FROM chapters
+//         LEFT JOIN lessons ON chapters.id = lessons.chapter_id
+//         ORDER BY chapters.id, lessons.id"; // Sắp xếp theo chương và bài học
+
+// try {
+//     $stmt = $conn->prepare($sql);
+//     $stmt->execute();
+//     $result = $stmt->fetchAll(PDO::FETCH_ASSOC); // Lấy tất cả kết quả
+// } catch (PDOException $e) {
+//     die("Câu truy vấn thất bại: " . $e->getMessage());
+// }
+
+$last_chapter_id = null; 
+?>
 
 <section class="teacher-main">
     <div class="container">
@@ -131,14 +152,97 @@
                         </div>
 
                         <div id="documents" class="sub-content mt-4" style="display: none">
-                            <h3>Tài Liệu</h3>
-                            <p>Nội dung tài liệu sẽ hiển thị ở đây.</p>
+                            <h1>Danh Sách Chương và Bài Học</h1>
+                            <a href="./tailieu/addchapter.php" class="btn btn-success">Thêm Chương</a>
+                            <?php
+                                if ($result) {
+                                    foreach ($result as $row) {
+                                        // Nếu là chương mới, in ra thông tin chương
+                                        if ($last_chapter_id != $row['chapter_id']) {
+                                            if ($last_chapter_id !== null) {
+                                                echo "</ul>"; // Kết thúc danh sách bài học của chương trước
+                                            }
+
+                                            // In thông tin chương và thêm nút hiển thị bài học
+                                            echo "<h3 onclick='toggleLessons(" . $row['chapter_id'] . ")'>" . htmlspecialchars($row['chapter_title']) . "</h3>";
+                                            echo "<ul id='lessons_" . $row['chapter_id'] . "' class='lesson-list'>"; // Danh sách bài học sẽ bị ẩn mặc định
+                                            echo "<a href='addlesson.php?chapter_id=" . $row['chapter_id'] . "'><button>Thêm bài học cho chương này</button></a>"; // Nút Thêm bài học cho chương
+                                            $last_chapter_id = $row['chapter_id'];
+                                        }
+
+                                        // In ra bài học trong chương hiện tại
+                                        if (!empty($row['lesson_title'])) { // Chỉ in ra bài học nếu tồn tại
+                                            echo "<li>";
+                                            echo "<a href='viewlesson.php?lesson_id=" . $row['lesson_id'] . "'>" . htmlspecialchars($row['lesson_title']) . "</a>";
+                                            echo "<div class='chapter-actions'>";
+                                            echo " [<a href='editlesson.php?lesson_id=" . $row['lesson_id'] . "'>Chỉnh sửa</a>]";
+                                            echo " [<a href='deletelesson.php?lesson_id=" . $row['lesson_id'] . "'>Xóa</a>]";
+                                            echo "</div>";
+                                            echo "</li>";
+                                        }
+                                    }
+                                    echo "</ul>"; // Kết thúc danh sách bài học của chương cuối
+                                } else {
+                                    echo "<p>Không có chương và bài học nào.</p>";
+                                }
+                                ?>
                         </div>
 
                         <div id="students" class="sub-content mt-4" style="display: none">
-                            <h3>Học Viên</h3>
-                            <p>Nội dung về sinh viên sẽ hiển thị ở đây.</p>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Tên Sinh Viên</th>
+                                        <th>Email</th>
+                                        <th>Nội Dung Câu Hỏi</th>
+                                        <th>Câu Trả Lời của Bạn</th>
+                                        <th>Trạng Thái</th>
+                                        <th>Ngày Tạo</th>
+                                        <th>Hành động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Phan Đăng Dũng</td>
+                                        <td>kaitokid2kk5@gmail.com</td>
+                                        <td>1+1 bằng mấy?</td>
+                                        <td>2</td>
+                                        <td>Ẩn</td>
+                                        <td>21/12/2004</td>
+                                        <td class="action-buttons">
+                                            <!-- Nút trả lời -->
+                                            <form method="POST" action="./traodoi/reply_question.php"
+                                                style="display:inline;">
+                                                <input type="hidden" name="question_id" value="">
+                                                <button type="submit" class="btn btn-success btn-sm btn-custom">
+                                                    <i class="fas fa-reply"></i> Trả Lời
+                                                </button>
+                                            </form>
+
+                                            <!-- Nút xóa -->
+                                            <form method="POST" action="./traodoi/delete_question.php"
+                                                style="display:inline;">
+                                                <input type="hidden" name="question_id" value="">
+                                                <button type="submit" class="btn btn-danger btn-sm btn-custom"
+                                                    onclick="return confirm('Bạn có chắc muốn xóa câu hỏi này?')">
+                                                    <i class="fas fa-trash-alt"></i> Xóa
+                                                </button>
+                                            </form>
+
+                                            <!-- Cập nhật câu trả lời -->
+                                            <form method="GET" action="./traodoi/update_answer.php" style="
+                                                display:inline;">
+                                                <input type="hidden" name="question_id" value="">
+                                                <button type="submit" class="btn btn-primary btn-sm btn-custom">
+                                                    <i class="fas fa-edit"></i> Cập Nhật
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
+
 
                         <div id="tests" class="sub-content mt-4" style="display: none">
                             <h3>Kiểm Tra</h3>

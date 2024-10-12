@@ -77,6 +77,7 @@
                             <li><a href="subject.php"><i class="fa fa-circle-o"></i>Khóa học</a></li>
                             <li><a href="teacher.php"><i class="fa fa-circle-o"></i>Giảng viên</a></li>
                             <li><a href="feedback.php"><i class="fa fa-circle-o"></i>Đánh giá</a></li>
+                            <li><a href="nganh.php"><i class="fa fa-circle-o"></i>Ngành</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
