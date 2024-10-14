@@ -40,6 +40,91 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
     <script src="https://kit.fontawesome.com/533aad8d01.js" crossorigin="anonymous"></script>
+    <style>
+        /* Định dạng dropdown-menu */
+.dropdown-menu {
+    display: none;
+    /* Ẩn menu mặc định */
+    position: absolute;
+    top: 100%;
+    /* Đặt menu xuống dưới nút */
+    left: 0;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    min-width: 200px;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    /* Hiệu ứng mượt mà */
+}
+
+/* Khi menu được hiển thị */
+.dropdown-menu.show {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Định dạng danh sách trong menu */
+.dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu ul li {
+    padding: 8px 10px;
+}
+
+.dropdown-menu ul li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu ul li a:hover {
+    background-color: #f0f0f0;
+    color: #007bff;
+}
+
+/* Định dạng khi hover nút */
+.btn-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+/* Định dạng chung cho các mục trong dropdown */
+
+/* Định dạng chung cho các mục trong dropdown */
+.dropdown-item {
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Định dạng icon trong mục "Đăng xuất" */
+.dropdown-item i {
+    margin-left: 8px; /* Khoảng cách giữa chữ và icon */
+    font-size: 18px; /* Kích thước của icon */
+    transition: color 0.3s ease;
+}
+
+/* Hiệu ứng khi hover vào "Đăng xuất" */
+.dropdown-item:hover {
+    background-color: #f0f0f0;
+    color: #007bff;
+}
+
+.dropdown-item:hover i {
+    color: #007bff; /* Màu của icon khi hover */
+}
+
+</style>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -54,8 +139,39 @@
             </div>
             <div class="header-icon">
                 <ul>
-                    <li><i class="fa-regular fa-bell"></i></li>
-                    <li><i class="fa-regular fa-envelope"></i></li>
+                    <li>
+                    <div class="dropdown">
+                                <button class="btn btn-icon dropdown-toggle" type="button" id="notificationButton"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-bell"></i> <!-- Icon thông báo -->
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="notificationButton">
+                                    <li><a class="dropdown-item" href="#">Thông báo mới nhất</a></li>
+                                    <li><a class="dropdown-item" href="#">Thông báo cũ hơn</a></li>
+                                    <li><a class="dropdown-item" href="#">Đọc tất cả thông báo</a></li>
+                                </ul>
+                            </div>
+                    </li>
+                    <li>
+                    <div class="dropdown">
+                                <button class="btn btn-avatar dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="https://via.placeholder.com/30" alt="avatar" class="rounded-circle">
+                                    <!-- Icon avatar -->
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                    style="margin-top :15px;">
+                                    <li><a class="dropdown-item" href="myProfile.php">Thông tin tài khoản</a></li>
+                                    <li><a class="dropdown-item" href="settings.php">Khoá học của tôi</a></li>
+                                    <li><a class="dropdown-item" href="settings.php">Giỏ hàng</a></li>
+                                    <li><a class="dropdown-item" href="settings.php">Lịch sử giao dịch</a></li>
+                                    <li><a class="dropdown-item" href="settings.php">Cài đặt</a></li>
+                                    <hr>
+                                    <li><a class="dropdown-item" href="logout.php"> Đăng xuất <i class="fa-solid fa-sign-out-alt"></i></a></li>
+
+                                </ul>
+                            </div>
+                    </li>
                 </ul>
             </div>
 
@@ -117,8 +233,28 @@
                         </ul>
                     </li>
                     <hr>
-                    <button class="btn btn-success mt-3">Đăng xuất</button>
+                    <li><a class="dropdown-item" href="logout.php"> <button class="btn btn-success mt-3"> Đăng xuất <i class="fa-solid fa-sign-out-alt"></button></i></a></li>
+               
                 </ul>
             </section>
             <!-- /.sidebar -->
         </aside>
+<script>
+        $(document).ready(function() {
+        // Khi nhấn vào nút thông báo, hiển thị hoặc ẩn menu
+        $('#notificationButton').on('click', function() {
+            // Ẩn menu giỏ hàng nếu nó đang mở
+            $('#cartButton').next('.dropdown-menu').removeClass('show');
+            // Toggle menu thông báo
+            $(this).next('.dropdown-menu').toggleClass('show');
+        });
+
+
+        // Khi nhấn ra ngoài các nút thông báo và giỏ hàng, ẩn các menu xổ xuống
+        $(document).on('click', function(e) {
+            if (!$(e.target).closest('.dropdown').length) {
+                $('.dropdown-menu').removeClass('show');
+            }
+        });
+    });
+    </script>

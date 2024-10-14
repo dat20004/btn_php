@@ -1,23 +1,17 @@
 <?php
-// Thay đổi kết nối từ Mysqli sang PDO
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "btl";
+// connect.php
+$servername = "localhost";  // Tên máy chủ
+$username = "root";         // Tên người dùng MySQL
+$password = "";             // Mật khẩu của MySQL (thường trống cho XAMPP)
+$dbname = "btl";  // Tên cơ sở dữ liệu
 
 try {
-    // Kết nối đến cơ sở dữ liệu bằng PDO
+    // Tạo kết nối bằng PDO
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    // Thiết lập chế độ báo lỗi của PDO
+    // Thiết lập chế độ lỗi của PDO là Exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Kết nối thất bại: " . $e->getMessage());
-}
-
-// Kiểm tra kết nối
-if ($conn) {
-    echo "Kết nối thành công!";
-} else {
-    echo "Kết nối không thành công.";
+    // echo "Kết nối thành công"; 
+} catch(PDOException $e) {
+    echo "Lỗi kết nối: " . $e->getMessage();
 }
 ?>
