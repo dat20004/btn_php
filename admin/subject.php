@@ -1,9 +1,81 @@
 <?php include 'header.php';
-// $data = $conn->query("SELECT * FROM category Order By id DESC");
-// if(!empty($_GET['search_key'])){
-//     $key = $_GET['search_key'];
-//     $data = $conn->query("SELECT * FROM category where name like '%$key%' Order By id DESC");
-// }
+
+include '../connect.php';
+try {
+    // Khởi tạo PDO
+    $conn = new PDO("mysql:host=$host;dbname=$database;charset=utf8", $user, $password);
+
+    // Thiết lập chế độ lỗi PDO thành Exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // Kiểm tra xem form có được gửi hay không
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Lấy thông tin từ form
+        $courseName = $_POST['courseName'];
+        $courseDesc = $_POST['courseDesc'];
+        $courseField = $_POST['courseField']; // ID ngành
+        $courseTeacher = $_POST['courseTeacher']; // ID giảng viên
+        $coursePrice = $_POST['coursePrice'];
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
+
+        // Xử lý hình ảnh
+        $courseImage = $_FILES['courseImage']['name'];
+        $targetDir = "uploads/"; // Đường dẫn lưu hình ảnh
+        $targetFile = $targetDir . basename($courseImage);
+        $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+
+        // Kiểm tra file có phải là hình ảnh không
+        if (getimagesize($_FILES['courseImage']['tmp_name']) === false) {
+            die("File không phải là hình ảnh.");
+        }
+
+        // Kiểm tra kích thước file hình ảnh (tối đa 5MB)
+        if ($_FILES['courseImage']['size'] > 5000000) {
+            die("Kích thước file quá lớn.");
+        }
+
+        // Chỉ cho phép các định dạng file là JPG, JPEG, PNG và GIF
+        if (!in_array($imageFileType, ['jpg', 'jpeg', 'png', 'gif'])) {
+            die("Chỉ cho phép các định dạng file JPG, JPEG, PNG và GIF.");
+        }
+
+        // Di chuyển file từ thư mục tạm đến thư mục uploads
+        if (!move_uploaded_file($_FILES['courseImage']['tmp_name'], $targetFile)) {
+            die("Lỗi khi tải ảnh lên.");
+        }
+
+        // Lưu thông tin khóa học vào cơ sở dữ liệu
+        $sql = "INSERT INTO courses (name, description, fee, major_id, teacher_id, start_date, end_date, image)
+                VALUES (:courseName, :courseDesc, :coursePrice, :courseField, :courseTeacher, :startDate, :endDate, :courseImage)";
+
+        // Chuẩn bị câu lệnh SQL
+        $stmt = $conn->prepare($sql);
+
+        // Gán giá trị cho các biến trong câu lệnh SQL
+        $stmt->bindParam(':courseName', $courseName);
+        $stmt->bindParam(':courseDesc', $courseDesc);
+        $stmt->bindParam(':coursePrice', $coursePrice);
+        $stmt->bindParam(':courseField', $courseField);
+        $stmt->bindParam(':courseTeacher', $courseTeacher);
+        $stmt->bindParam(':startDate', $startDate);
+        $stmt->bindParam(':endDate', $endDate);
+        $stmt->bindParam(':courseImage', $targetFile);
+
+        // Thực thi câu lệnh
+        $stmt->execute();
+
+        // Thông báo thành công
+        echo "Thêm khóa học thành công!";
+    }
+} catch (PDOException $e) {
+    // Hiển thị lỗi nếu có vấn đề trong quá trình thực thi SQL
+    echo "Lỗi: " . $e->getMessage();
+}
+
+// Đóng kết nối
+$conn = null;
+?>
+
 ?>
 
 <div class="content-wrapper subject">

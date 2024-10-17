@@ -4,6 +4,7 @@ USE btl;
 -- Bảng người dùng
 CREATE TABLE users (
   id INT PRIMARY KEY AUTO_INCREMENT,
+  	full_name
   name VARCHAR(255) UNIQUE NOT NULL,
   email VARCHAR(255) UNIQUE NOT NULL,
   password VARCHAR(255) UNIQUE NOT NULL,
@@ -12,6 +13,7 @@ CREATE TABLE users (
   state ENUM ('Active', 'Inactive', 'Removed') DEFAULT 'Inactive',
   FOREIGN KEY (user_info) REFERENCES user_infos(id) ON DELETE SET NULL  -- Khóa ngoại liên kết với bảng thông tin người dùng
 );
+
 
 -- Bảng thông tin người dùng
 CREATE TABLE user_infos (

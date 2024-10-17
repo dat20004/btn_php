@@ -6173,3 +6173,150 @@ table.text-center th {
     justify-content: center;
     align-items: center;
 }
+
+/* ======== */
+.myProfile {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #2c3e50;
+}
+
+.myProfile-container {
+    display: flex;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Sidebar bên trái */
+.myProfile-left {
+    width: 300px;
+    background-color: #2c3e50;
+    padding: 40px 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 10px 0 0 10px;
+}
+
+.myProfile-left__logo img {
+    width: 150px;
+}
+
+.myProfile-left__ava img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+}
+
+.myProfile-left__exit form {
+    margin-top: 20px;
+}
+
+.myProfile-left__exit button {
+    padding: 12px 24px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.myProfile-left__exit button:hover {
+    background-color: #c0392b;
+}
+
+/* Phần nội dung bên phải */
+.myProfile-right {
+    flex: 1;
+    padding: 40px;
+    color: #333;
+    background-color: #2c3e50;
+}
+
+.myProfile-right h1 {
+    font-size: 36px;
+    color: #2980b9;
+    margin-bottom: 10px;
+}
+
+.myProfile-right p {
+    font-size: 18px;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+}
+
+.account-form {
+    background-color: #ecf0f1;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.account-form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #2980b9;
+}
+
+.account-form label {
+    font-size: 16px;
+    color: #34495e;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.account-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s;
+}
+
+.account-form input:focus {
+    border-color: #3498db;
+}
+
+.account-form button {
+    /* padding: 12px 24px; */
+    width: 100px;
+    height: 30px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.account-form button:hover {
+    background-color: #2980b9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .myProfile-container {
+        flex-direction: column;
+    }
+
+    .myProfile-left {
+        width: 100%;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .myProfile-right {
+        padding: 20px;
+    }
+}

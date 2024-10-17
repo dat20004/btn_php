@@ -1,4 +1,5 @@
 <?php include 'header.php' ?>
+
 <div class="content-wrapper">
     <div class="container">
         <div class="edit-major__center">
@@ -24,7 +25,7 @@
                 <button class="submit-button">Tạo</button>
             </div>
         </div>
-
     </div>
 </div>
+
 <?php include 'footer.php' ?>

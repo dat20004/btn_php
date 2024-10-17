@@ -1,12 +1,5 @@
 <?php include 'header.php'; 
-$error = ''; 
-if(isset($_POST['name'])){ 
-    $name = $_POST['name']; 
-    $status = $_POST['status']; 
-    if($name == ''){ $error = 'Tên danh mục không được trống'; } 
-    $query = $conn->query("SELECT * FROM category where name='$name'"); 
-    if( $query->num_rows>0){ $error=  'Tên danh mục đã được sử dụng'; } 
-    if(!$error){ $sql = "INSERT INTO category (name,status) values('$name','$status')"; if($conn->query($sql)){ header('location: category.php'); } else{ $error = 'Thêm mới không thành công!'; } } } ?>
+?>
 <div class="content-wrapper teacher">
     <section class="content-header d-flex justify-content-between">
         <h1> Teacher </h1>

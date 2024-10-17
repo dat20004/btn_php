@@ -1,119 +1,250 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tài khoản cá nhân</title>
+        <style>
+            /* Reset mặc định */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+            /* Căn chỉnh tổng quan */
+            .content-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background-color: #f9f9f9;
+            }
 
-    <script src="https://kit.fontawesome.com/533aad8d01.js" crossorigin="anonymous"></script>
-    <style>
-        /* Ẩn các chuyên ngành ban đầu */
-        .sub-menu {
-            display: none;
-            position: absolute;
-            background-color: white; /* Màu nền */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Bóng đổ */
-            z-index: 1000; /* Đảm bảo nó nằm trên các phần tử khác */
-        }
+            .myProfile {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
 
-        .dropdown-teacher {
-            position: relative; /* Để các submenu nằm bên cạnh */
-        }
+            .myProfile-container {
+                display: flex;
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+            }
 
-        .dropdown-item {
-            cursor: pointer; /* Con trỏ khi hover */
-        }
+            /* Sidebar bên trái */
+            .myProfile-left {
+                width: 300px;
+                background-color: #2c3e50;
+                padding: 40px 20px;
+                color: white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 20px;
+                border-radius: 10px 0 0 10px;
+            }
 
-        .show {
-            display: block; /* Hiện chuyên ngành */
-        }
-    </style>
-</head>
+            .myProfile-left__logo img {
+                width: 150px;
+            }
 
-<body>
-    <header class="header">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img class="header-img" src="./images/12-removebg-preview.png"
-                        alt=""></a>
+            .myProfile-left__ava img {
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                border: 3px solid #fff;
+            }
 
-                <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarNavDropdown">
-                    <ul class="navbar-nav ">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Về chúng tôi
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
-                                <li>
-                                    <a class="dropdown-item" href="hello-fastlearn.php">Về Fastlearn </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="introduction.php">Đội ngũ giảng viên</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="feel-student.php">Học viên</a>
-                                </li>
-                            </ul>
-                        </li>
+            .myProfile-left__exit form {
+                margin-top: 20px;
+            }
 
-                        <!-- Dropdown Ngành học -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="majorDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Ngành học
-                            </a>
-                            <ul class="dropdown-menu dropdown-teacher" aria-labelledby="majorDropdown">
-                                <li>
-                                    <a class="dropdown-item" id="scienceTechnology">Khoa học công nghệ</a>
-                                    <div class="sub-menu">
-                                        <a class="dropdown-item" href="#">Công nghệ thông tin</a>
-                                        <a class="dropdown-item" href="#">Khoa học dữ liệu</a>
-                                        <a class="dropdown-item" href="#">An toàn thông tin</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">Kinh tế</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">Ngoại ngữ</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+            .myProfile-left__exit button {
+                padding: 12px 24px;
+                background-color: #e74c3c;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
 
-                    <!-- Tìm kiếm -->
-                    <form class="d-flex header-form" role="search">
-                        <input class="form-control " type="search" placeholder="Tìm kiếm" aria-label="Search">
-                        <button class="btn btn-outline-light" type="submit"><i
-                                class="fa-solid fa-magnifying-glass"></i></button>
-                    </form>
+            .myProfile-left__exit button:hover {
+                background-color: #c0392b;
+            }
 
-                    <div class="header-button__register">
-                        <button class="btn btn-register">Đăng ký </button>
-                        <button class="btn btn-primary btn-login">Đăng nhập</button>
+            /* Phần nội dung bên phải */
+            .myProfile-right {
+                flex: 1;
+                padding: 40px;
+                color: #333;
+            }
+
+            .myProfile-right h1 {
+                font-size: 36px;
+                color: #2980b9;
+                margin-bottom: 10px;
+            }
+
+            .myProfile-right p {
+                font-size: 18px;
+                color: #7f8c8d;
+                margin-bottom: 20px;
+            }
+
+            .account-form {
+                background-color: #ecf0f1;
+                padding: 30px;
+                border-radius: 10px;
+            }
+
+            .account-form h2 {
+                font-size: 24px;
+                margin-bottom: 20px;
+                color: #2980b9;
+            }
+
+            .account-form label {
+                font-size: 16px;
+                color: #34495e;
+                margin-bottom: 10px;
+                display: block;
+            }
+
+            .account-form input {
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 20px;
+                border: 1px solid #bdc3c7;
+                border-radius: 5px;
+                font-size: 16px;
+                color: #333;
+                transition: border-color 0.3s;
+            }
+
+            .account-form input:focus {
+                border-color: #3498db;
+            }
+
+            .account-form button {
+                padding: 12px 24px;
+                background-color: #3498db;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .account-form button:hover {
+                background-color: #2980b9;
+            }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+                .myProfile-container {
+                    flex-direction: column;
+                }
+
+                .myProfile-left {
+                    width: 100%;
+                    border-radius: 10px 10px 0 0;
+                }
+
+                .myProfile-right {
+                    padding: 20px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content-wrapper subject">
+            <div class="myProfile">
+                <div class="container">
+                    <div class="myProfile-container">
+                        <div class="myProfile-left">
+                            <div class="myProfile-left__logo">
+                                <img src="./dist/img/logo-admin.png" alt="" />
+                            </div>
+                            <div class="myProfile-left__ava">
+                                <img src="./dist/img/avatar04.png" alt="" />
+                            </div>
+                            <div class="myProfile-left__exit">
+                                <form action="logout.php" method="POST">
+                                    <button type="submit">Đăng xuất</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="myProfile-right">
+                            <h1>Tài khoản</h1>
+                            <p>Thông tin cá nhân</p>
+                            <div class="account-form">
+                                <h2>Tài khoản cá nhân</h2>
+                                <form action="update_account.php" method="POST">
+                                    <label for="name">Tên:</label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        value=""
+                                        required
+                                    />
+
+                                    <label for="email">Email:</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        value=""
+                                        required
+                                    />
+
+                                    <h3>Thay đổi mật khẩu</h3>
+
+                                    <label for="old-password"
+                                        >Mật khẩu cũ:</label
+                                    >
+                                    <input
+                                        type="password"
+                                        id="old-password"
+                                        name="old-password"
+                                    />
+
+                                    <label for="new-password"
+                                        >Mật khẩu mới:</label
+                                    >
+                                    <input
+                                        type="password"
+                                        id="new-password"
+                                        name="new-password"
+                                    />
+
+                                    <label for="confirm-password"
+                                        >Nhập lại mật khẩu mới:</label
+                                    >
+                                    <input
+                                        type="password"
+                                        id="confirm-password"
+                                        name="confirm-password"
+                                    />
+
+                                    <button type="submit">
+                                        Cập nhật thông tin
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </nav>
-    </header>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
-    <script>
-        // JavaScript để điều khiển việc hiển thị chuyên ngành
-        document.getElementById('scienceTechnology').addEventListener('click', function (e) {
-            e.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
-            var subMenu = this.nextElementSibling; // Lấy phần tử <div> chứa chuyên ngành
-            // Hiện hoặc ẩn các chuyên ngành
-            subMenu.classList.toggle('show');
-        });
-    </script>
-</body>
-
+        </div>
+    </body>
 </html>
